@@ -13,6 +13,7 @@ echo "pushing version $version"
 IFS=$'\r\n'
 for file in `git ls-files`; do
   sed -i -e "s/\\\$VERSION\\$/$version/g" -e "s/%VERSION%/$version/g" $file
+  git add $file
 done
 
 # create alternative files automatically
@@ -25,4 +26,4 @@ git add alt
 
 git rm pushversion.sh --cached
 
-git commit -m "pushed version $version"
+#git commit -m "pushed version $version"
