@@ -13,10 +13,19 @@
  * 
  * Note to self: console.log is for debugging only
  * 
- * TODO: type checking by class, not toType() string
  */
-define([ '../lib/toType' ], function (toType) {
-  var Interface;
+var Implements = (function () {
+  var Implements;
+
+  /**
+   * replacement of the typeof function
+   * 
+   * Source:
+   * http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
+   */
+  function toType (obj) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+  }
 
   /**
    * search for the object in the stack and abort if present, clone and push
@@ -495,7 +504,7 @@ define([ '../lib/toType' ], function (toType) {
   }
 
   /**
-   * retrieves all keys if .Interface and .Extends
+   * retrieves all keys of .Interface and .Extends
    * 
    * @param {object}
    *          intf the interface
@@ -900,7 +909,7 @@ define([ '../lib/toType' ], function (toType) {
    *          opts (optional) match options. See matchInterface()
    * 
    */
-  Interface = function () {
+  Implements = function () {
     switch (arguments.length) {
     case 1:
       return validate(arguments[0]);
@@ -913,7 +922,7 @@ define([ '../lib/toType' ], function (toType) {
     }
   };
   // disallow instantiation
-  Interface.prototype = undefined;
+  Implements.prototype = undefined;
 
   /**
    * Tests whether the Interface consists only of functions and other interfaces
@@ -923,7 +932,7 @@ define([ '../lib/toType' ], function (toType) {
    * @returns {string} a newline-separated string with error description. "" on
    *          match.
    */
-  Interface.validate = validate;
+  Implements.validate = validate;
 
   /**
    * Tests the implementation against the interface
@@ -947,7 +956,7 @@ define([ '../lib/toType' ], function (toType) {
    * @returns {string} a newline-separated string with error description. "" on
    *          match.
    */
-  Interface.match = match;
+  Implements.match = match;
 
   /**
    * combine all arguments into a single interface object.
@@ -956,9 +965,9 @@ define([ '../lib/toType' ], function (toType) {
    *          one or more interfaces
    * @returns {Interface} a combined interface
    */
-  Interface.combine = combine;
+  Implements.combine = combine;
 
-  Interface.selfInterface = {
+  Implements.selfInterface = {
     Interface : {
       validate : function () {
       },
@@ -972,8 +981,8 @@ define([ '../lib/toType' ], function (toType) {
     }
   };
 
-  // Interface.selfInterface.Interface.selfInterface.Interface.Interface =
-  // Interface.selfInterface;
+  // Implements.selfInterface.Interface.selfInterface.Interface.Interface =
+  // Implements.selfInterface;
 
-  return Interface;
-});
+  return Implements;
+})();
