@@ -897,9 +897,13 @@ var Implements = (function () {
   /**
    * calls its internal functions validate() or match():
    * 
-   * 1 argument ->validate()
+   * Implements() / new Implements() -> create new empty interface object
    * 
-   * 2 or 3 arguments -> match()
+   * Implements(interface) -> Implements.validate(interface)
+   * 
+   * Implements(intf, implementation) -> Implements.match(intf, implementation)
+   * 
+   * Implements(intf, impl, opts) -> Implements.match(intf, impl, opts)
    * 
    * @param {Interface}
    *          intf an interface object
@@ -911,6 +915,14 @@ var Implements = (function () {
    */
   Implements = function () {
     switch (arguments.length) {
+    case 0:
+      // called as a constructor or a blank function. Just ignore `this` and
+      // return a blank interface object
+      return {
+        Interface : {},
+        Extends : [],
+        Requires : []
+      };
     case 1:
       return validate(arguments[0]);
     case 2:

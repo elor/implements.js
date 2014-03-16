@@ -4,10 +4,31 @@
 QUnit.test("Interface Implementation Validator", function () {
   var intf;
 
-  QUnit.equal(Implements(Implements.selfInterface, Implements, 'ifm'), '', 'self-matching');
+  intf = {
+    Interface : {
+      Interface : {
+        Interface : {}
+      },
+      Requires : [ {
+        Interface : {}
+      } ],
+      Extends : [ {
+        Interface : {}
+      } ]
+    }
+  };
+
+  QUnit.deepEqual(Implements(), {
+    Interface : {},
+    Extends : [],
+    Requires : []
+  }, "Implements(): automatic interface creation");
+
+  QUnit.equal(Implements(intf, Implements(), 'i'), '', 'new Implements() self-validation');
+
+  QUnit.deepEqual(Implements(), new Implements(), "new Implements()");
 
   intf = {};
-
   QUnit.notEqual(Implements(intf), '', "empty interface");
 
   intf = {
@@ -406,8 +427,10 @@ QUnit.test("Interface Implementation Matcher", function () {
   obj = {};
 
   QUnit.notEqual(Implements(), '', "missing arguments");
-  QUnit.notEqual(Implements.match(intf), '', "missing obj");
+  QUnit.notEqual(Implements(intf), '', "missing obj");
   QUnit.notEqual(Implements(undefined, obj), '', "missing intf");
+
+  QUnit.equal(Implements(Implements.selfInterface, Implements, 'ifm'), '', 'self-matching');
 
   QUnit.notEqual(Implements(intf, obj, 'i'), '', "interface validator invocation: missing Interface member");
   intf = {
