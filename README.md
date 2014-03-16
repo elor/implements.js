@@ -185,7 +185,7 @@ Implements() with one argument defaults to Implements.validate():
 
 ### Interface match
 
-default behaviour: non-recursive, extra properties allowed, no validation
+Default behaviour: non-recursive, extra properties allowed, no validation
 
     var errors = Implements.match(myInterface, obj);
     if (errors !== '') {
@@ -193,7 +193,7 @@ default behaviour: non-recursive, extra properties allowed, no validation
       console.log(errors);
     }
     
-strict check: recursive, no extra props, validation before match
+Strict check: recursive, no extra props, validation before match
 
     var errors = Implements.match(myInterface, obj, "irfm");
     if (errors !== '') {
@@ -201,7 +201,7 @@ strict check: recursive, no extra props, validation before match
       console.log(errors);
     }
 
-Implements() with two argument defaults to Implements.match()
+Implements() with two or three arguments defaults to Implements.match()
 
     var errors = Implements(myInterface, obj, "");
     if (errors !== '') {
