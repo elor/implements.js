@@ -1,4 +1,8 @@
 /**
+ * @author <erik.e.lorenz@gmail.com> Erik E. Lorenz
+ * 
+ * Version %VERSION%
+ * 
  * Interface class for definition and testing purposes
  * 
  * Allows the validation of Java-inspired interfaces.

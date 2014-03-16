@@ -1,4 +1,8 @@
-/*
+/**
+ * @author <erik.e.lorenz@gmail.com> Erik E. Lorenz
+ * 
+ * Version %VERSION%
+ * 
  * Interface Test
  */
 QUnit.test("Interface Implementation Validator", function () {
