@@ -26,4 +26,8 @@ git add alt
 
 git rm pushversion.sh --cached
 
-#git commit -m "pushed version $version"
+echo "committing changes"
+
+git commit -m "pushed version $version"
+
+rm pushversion.sh
