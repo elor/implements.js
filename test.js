@@ -1,7 +1,7 @@
 /**
  * @author <erik.e.lorenz@gmail.com> Erik E. Lorenz
  * 
- * Version %VERSION%
+ * Version 1.0
  * 
  * Interface Test
  */

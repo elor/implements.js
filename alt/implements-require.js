@@ -18,7 +18,7 @@
  * Note to self: console.log is for debugging only
  * 
  */
-var Implements = (function () {
+define(function () {
   var Implements;
 
   /**
@@ -1001,4 +1001,4 @@ var Implements = (function () {
   // Implements.selfInterface;
 
   return Implements;
-})();
+});
